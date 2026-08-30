@@ -1,0 +1,37 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  datasource:
+    url: ${SUPABASE_DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SUPABASE_DB_USERNAME:postgres}
+    password: ${SUPABASE_DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.batch_size: 25
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dGhpcy1pcy1hLXZlcnktc2VjdXJlLWtleS13aGljaC1zaG91bGQtYmUtYXQtbGVhc3QtMjU2LWJpdHMtbG9uZw==}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  admin:
+    default-username: ${ADMIN_USERNAME:admin}
+    default-password: ${ADMIN_PASSWORD:admin123}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+
+resend:
+  api-key: ${RESEND_API_KEY:re_defaultkey}
+  from-email: ${RESEND_FROM_EMAIL:onboarding@resend.dev}
+  from-name: ${RESEND_FROM_NAME:EventPass}

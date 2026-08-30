@@ -1,0 +1,41 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Editor & IDE Files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+
+# Documentations & Guides (Ignore in Git)
+RENDER_DEPLOYMENT.md
+implementation_plan.md
+task.md
+walkthrough.md
+
+# Node / Frontend Build Targets
+node_modules/
+dist/
+dist-ssr/
+frontend/node_modules/
+frontend/dist/
+
+# Java / Backend Build Targets
+backend/target/
+*.class
+.project
+.classpath
+.settings/
+dependency-reduced-pom.xml
+
+# Environments & Secret Keys
+.env
+.env.local
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+frontend/.env.local
+backend/.env.local
