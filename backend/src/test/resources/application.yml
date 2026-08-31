@@ -23,7 +23,12 @@ app:
   cors:
     allowed-origins: http://localhost:5173
 
+email:
+  api-key: mock_key
+  from-email: test@example.com
+  from-name: EventPass
+
 resend:
   api-key: mock_key
-  from-email: onboarding@resend.dev
+  from-email: test@example.com
   from-name: EventPass

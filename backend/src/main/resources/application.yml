@@ -31,7 +31,16 @@ app:
   cors:
     allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
 
+email:
+  api-key: ${EMAIL_API_KEY:${BREVO_API_KEY:${RESEND_API_KEY:}}}
+  from-email: ${EMAIL_FROM:${BREVO_FROM_EMAIL:${RESEND_FROM_EMAIL:gondaliyaronak78@gmail.com}}}
+  from-name: ${EMAIL_FROM_NAME:${BREVO_FROM_NAME:${RESEND_FROM_NAME:EventPass}}}
+  smtp-host: ${SMTP_HOST:smtp-relay.brevo.com}
+  smtp-port: ${SMTP_PORT:587}
+  smtp-username: ${SMTP_USERNAME:${BREVO_SMTP_LOGIN:}}
+  smtp-password: ${SMTP_PASSWORD:${BREVO_API_KEY:${RESEND_API_KEY:}}}
+
 resend:
-  api-key: ${RESEND_API_KEY:re_defaultkey}
-  from-email: ${RESEND_FROM_EMAIL:onboarding@resend.dev}
+  api-key: ${RESEND_API_KEY:}
+  from-email: ${RESEND_FROM_EMAIL:gondaliyaronak78@gmail.com}
   from-name: ${RESEND_FROM_NAME:EventPass}
