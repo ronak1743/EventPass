@@ -172,6 +172,8 @@ const headerStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  flexWrap: 'wrap',
+  gap: '16px',
 }
 
 const titleStyle = {

@@ -57,7 +57,7 @@ export const CheckInPage = ({ eventId }) => {
       <p style={subtitleStyle}>Search and check in attendees by name, token, email, or mobile number</p>
 
       {/* Search Row */}
-      <form onSubmit={handleSearch} style={searchFormStyle}>
+      <form onSubmit={handleSearch} className="checkin-search-row">
         <Input
           id="checkinQuery"
           value={query}
@@ -76,7 +76,7 @@ export const CheckInPage = ({ eventId }) => {
         ) : (
           <div style={candidatesListStyle}>
             {candidates.map((c) => (
-              <div key={c.id} style={candidateCardStyle}>
+              <div key={c.id} className="checkin-candidate-card">
                 <div style={candidateInfoStyle}>
                   <div style={candidateNameStyle}>{c.name || 'Anonymous'}</div>
                   <div style={candidateMetaStyle}>

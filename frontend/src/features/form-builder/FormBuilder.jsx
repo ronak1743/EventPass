@@ -172,7 +172,7 @@ export const FormBuilder = ({ eventId }) => {
 
   return (
     <div style={builderContainerStyle}>
-      <div style={builderHeaderStyle}>
+      <div className="builder-header">
         <div>
           <h3 style={titleStyle}>Form Builder</h3>
           <p style={subtitleStyle}>Drag items to reorder or click them to configure question values</p>
@@ -182,7 +182,7 @@ export const FormBuilder = ({ eventId }) => {
         </Button>
       </div>
 
-      <div style={workspaceStyle}>
+      <div className="builder-workspace">
         {/* Left Side: Palette */}
         <div style={panelStyle}>
           <h4 style={panelTitleStyle}>Question Types</h4>

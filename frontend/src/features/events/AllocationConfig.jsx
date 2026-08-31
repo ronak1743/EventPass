@@ -118,7 +118,7 @@ export const AllocationConfigComponent = ({ eventId, initialAllocationEnabled })
 
       {allocationEnabled && (
         <div style={configBoxStyle} className="fade-in">
-          <div style={rowStyle}>
+          <div className="form-row">
             <Select
               label="Allocation Type"
               id="allocationType"
@@ -152,7 +152,7 @@ export const AllocationConfigComponent = ({ eventId, initialAllocationEnabled })
             ) : (
               <div style={slotsListStyle}>
                 {slots.map((slot, index) => (
-                  <div key={slot.id || index} style={slotItemStyle}>
+                  <div key={slot.id || index} className="slot-item-responsive">
                     <Input
                       label="Slot Label"
                       id={`slot-label-${index}`}

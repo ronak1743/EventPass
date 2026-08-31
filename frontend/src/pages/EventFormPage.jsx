@@ -83,7 +83,7 @@ export const EventFormPage = () => {
             placeholder="e.g. Online, Google Meet, or Physical address"
           />
 
-          <div style={rowStyle}>
+          <div className="form-row">
             <Input
               label="Registration Start Date & Time"
               id="registrationStart"
@@ -100,7 +100,7 @@ export const EventFormPage = () => {
             />
           </div>
 
-          <div style={rowStyle}>
+          <div className="form-row">
             <Input
               label="Maximum Seat Capacity"
               id="totalCapacity"

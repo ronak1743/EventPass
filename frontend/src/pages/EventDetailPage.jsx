@@ -46,8 +46,8 @@ export const EventDetailPage = () => {
       case 'details':
         const publicUrl = `${import.meta.env.VITE_FRONT_URL || window.location.origin}/event/${event?.slug}`
         return (
-          <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }} className="fade-in">
-            <div style={{ ...tabCardStyle, flex: 2 }}>
+          <div className="detail-tab-container fade-in">
+            <div style={{ ...tabCardStyle, flex: 2, width: '100%' }}>
               <h3 style={sectionTitleStyle}>Basic Information</h3>
               <div style={detailGridStyle}>
                 <div style={detailFieldStyle}>
@@ -80,7 +80,7 @@ export const EventDetailPage = () => {
                 )}
               </div>
             </div>
-            <div style={{ ...tabCardStyle, flex: 1, alignItems: 'center' }}>
+            <div style={{ ...tabCardStyle, flex: 1, width: '100%', alignItems: 'center' }}>
               <h3 style={{ ...sectionTitleStyle, width: '100%' }}>Registration Link & QR</h3>
               <QRCodeDisplay value={publicUrl} />
             </div>
@@ -172,6 +172,8 @@ const headerCardStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  flexWrap: 'wrap',
+  gap: '16px',
 }
 
 const headerLeftStyle = {
@@ -201,6 +203,10 @@ const tabsListStyle = {
   display: 'flex',
   borderBottom: '1px solid #e5e7eb',
   gap: '8px',
+  overflowX: 'auto',
+  whiteSpace: 'nowrap',
+  scrollbarWidth: 'none', /* Firefox */
+  msOverflowStyle: 'none',  /* IE/Edge */
 }
 
 const tabBtnStyle = {
@@ -213,6 +219,7 @@ const tabBtnStyle = {
   borderBottom: '2px solid transparent',
   cursor: 'pointer',
   transition: 'all 150ms ease',
+  flexShrink: 0,
 }
 
 const activeTabBtnStyle = {
@@ -243,7 +250,7 @@ const sectionTitleStyle = {
 
 const detailGridStyle = {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
   gap: '24px',
 }
 

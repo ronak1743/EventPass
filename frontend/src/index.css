@@ -145,3 +145,145 @@ a:hover {
     border-radius: 12px !important;
   }
 }
+
+/* Event Detail Page responsive styles */
+.detail-tab-container {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .detail-tab-container {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .detail-tab-container > div {
+    width: 100% !important;
+    flex: none !important;
+  }
+}
+
+/* Responsive form rows */
+.form-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* Form Builder Responsive Layout */
+.builder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.builder-workspace {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .builder-workspace {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .builder-workspace > div {
+    width: 100%;
+  }
+}
+
+/* Responsive slot items inside AllocationConfig */
+.slot-item-responsive {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.slot-item-responsive > * {
+  flex: 1;
+}
+
+.slot-item-responsive > button {
+  flex: none;
+  align-self: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .slot-item-responsive {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}
+
+/* Responsive check-in search row & candidate card */
+.checkin-search-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  max-width: 560px;
+  width: 100%;
+}
+
+.checkin-candidate-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  gap: 16px;
+}
+
+.checkin-candidate-card > div:first-child {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .checkin-search-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .checkin-search-row > button {
+    margin-top: 4px;
+    width: 100%;
+  }
+  .checkin-candidate-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .checkin-candidate-card button {
+    width: 100%;
+  }
+  .checkin-candidate-card div {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+}
