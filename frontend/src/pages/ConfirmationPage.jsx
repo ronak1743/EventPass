@@ -15,7 +15,7 @@ export const ConfirmationPage = () => {
   const slotTime = state.slotTime
 
   return (
-    <div style={cardStyle} className="fade-in">
+    <div className="confirmation-card fade-in">
       <div style={iconContainerStyle}>
         <span style={iconStyle}>✓</span>
       </div>

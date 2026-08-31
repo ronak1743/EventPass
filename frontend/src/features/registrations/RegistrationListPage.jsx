@@ -135,9 +135,9 @@ export const RegistrationListPage = ({ eventId }) => {
   return (
     <div style={containerStyle} className="fade-in">
       {/* Filtering Row */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
+      <div style={filterHeaderContainerStyle}>
         <div style={filtersRowStyle}>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: '1 1 140px', minWidth: '130px' }}>
             <Select
               label="Filter by Status"
               id="statusFilter"
@@ -155,7 +155,7 @@ export const RegistrationListPage = ({ eventId }) => {
             />
           </div>
           {slotsList.length > 0 && (
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: '1 1 140px', minWidth: '130px' }}>
               <Select
                 label="Filter by Slot"
                 id="slotFilter"
@@ -209,11 +209,22 @@ const containerStyle = {
   gap: '16px',
 }
 
+const filterHeaderContainerStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'flex-end',
+  flexWrap: 'wrap',
+  gap: '16px',
+  marginBottom: '8px',
+}
+
 const filtersRowStyle = {
   display: 'flex',
-  gap: '20px',
-  maxWidth: '500px',
-  marginBottom: '4px',
+  gap: '16px',
+  flex: '1 1 300px',
+  flexWrap: 'wrap',
+  minWidth: '280px',
 }
 
 const actionsStyle = {

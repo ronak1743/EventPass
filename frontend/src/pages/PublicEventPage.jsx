@@ -127,7 +127,7 @@ export const PublicEventPage = () => {
   }
 
   return (
-    <div style={formCardStyle} className="fade-in">
+    <div className="form-card fade-in">
       {/* Event header */}
       <div style={titleAreaStyle}>
         <h1 style={titleStyle}>{eventData?.title}</h1>

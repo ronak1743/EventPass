@@ -110,3 +110,38 @@ a:hover {
     transform: translateY(0);
   }
 }
+
+/* Responsive Card Layouts */
+.form-card {
+  background-color: #ffffff;
+  padding: 40px 36px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  max-width: 680px;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  align-self: center;
+}
+
+.confirmation-card {
+  background-color: #ffffff;
+  padding: 40px 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  max-width: 480px;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  align-self: center;
+}
+
+@media (max-width: 640px) {
+  .form-card {
+    padding: 24px 16px !important;
+    border-radius: 12px !important;
+  }
+  .confirmation-card {
+    padding: 24px 16px !important;
+    border-radius: 12px !important;
+  }
+}

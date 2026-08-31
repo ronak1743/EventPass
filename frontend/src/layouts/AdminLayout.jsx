@@ -1,23 +1,68 @@
-import React from 'react'
-import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '@/features/auth/AuthContext'
 import { Button } from '@/components/Button'
 
 export const AdminLayout = () => {
   const { admin, logout } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+
+  // Track responsiveness and sidebar state
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const handleLogout = () => {
     logout()
     navigate('/login')
   }
 
+  // Handle window resizing
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 1024
+      setIsMobile(mobile)
+      if (!mobile) {
+        setIsSidebarOpen(false) // always close mobile drawer on desktop resize
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // Auto-close sidebar on route change (mobile)
+  useEffect(() => {
+    setIsSidebarOpen(false)
+  }, [location.pathname])
+
   return (
     <div style={layoutStyle}>
-      {/* Sidebar */}
-      <aside style={sidebarStyle}>
+      {/* Mobile Backdrop overlay */}
+      {isMobile && isSidebarOpen && (
+        <div 
+          style={backdropStyle} 
+          onClick={() => setIsSidebarOpen(false)}
+          className="fade-in"
+        />
+      )}
+
+      {/* Sidebar (Responsive drawer on mobile) */}
+      <aside style={{
+        ...sidebarStyle,
+        left: isMobile ? (isSidebarOpen ? '0' : '-280px') : '0',
+        width: isMobile ? '280px' : '260px',
+        boxShadow: isMobile && isSidebarOpen ? '4px 0 25px rgba(0,0,0,0.15)' : 'none',
+      }}>
         <div style={logoContainerStyle}>
           <Link to="/admin" style={logoStyle}>EventPass Admin</Link>
+          {isMobile && (
+            <button 
+              onClick={() => setIsSidebarOpen(false)} 
+              style={closeSidebarBtnStyle}
+            >
+              ✕
+            </button>
+          )}
         </div>
         <nav style={navStyle}>
           <NavLink
@@ -48,20 +93,45 @@ export const AdminLayout = () => {
       </aside>
 
       {/* Main Content Area */}
-      <div style={mainAreaStyle}>
+      <div style={{
+        ...mainAreaStyle,
+        marginLeft: isMobile ? '0' : '260px',
+      }}>
         {/* Topbar */}
-        <header style={headerStyle}>
-          <div style={headerTitleStyle}>Welcome back, {admin?.username || 'Admin'}</div>
+        <header style={{
+          ...headerStyle,
+          padding: isMobile ? '0 16px' : '0 32px',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {isMobile && (
+              <button 
+                onClick={() => setIsSidebarOpen((prev) => !prev)} 
+                style={hamburgerBtnStyle}
+                aria-label="Toggle Sidebar"
+              >
+                ☰
+              </button>
+            )}
+            <div style={{
+              ...headerTitleStyle,
+              fontSize: isMobile ? '16px' : '18px',
+            }}>
+              Welcome back, {admin?.username || 'Admin'}
+            </div>
+          </div>
           <div style={adminInfoStyle}>
             <span style={avatarStyle}>
               {admin?.username ? admin.username.substring(0, 2).toUpperCase() : 'AD'}
             </span>
-            <span style={emailStyle}>{admin?.email}</span>
+            {!isMobile && <span style={emailStyle}>{admin?.email}</span>}
           </div>
         </header>
 
         {/* Content Outlet */}
-        <main style={contentStyle}>
+        <main style={{
+          ...contentStyle,
+          padding: isMobile ? '16px' : '32px',
+        }}>
           <Outlet />
         </main>
       </div>
@@ -76,7 +146,6 @@ const layoutStyle = {
 }
 
 const sidebarStyle = {
-  width: '260px',
   backgroundColor: '#1f2937',
   color: '#ffffff',
   display: 'flex',
@@ -85,13 +154,16 @@ const sidebarStyle = {
   position: 'fixed',
   top: 0,
   bottom: 0,
-  left: 0,
-  zIndex: 10,
+  zIndex: 1000,
+  transition: 'left 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
 }
 
 const logoContainerStyle = {
   marginBottom: '40px',
   paddingLeft: '8px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 }
 
 const logoStyle = {
@@ -99,6 +171,15 @@ const logoStyle = {
   fontWeight: 700,
   color: '#ffffff',
   textDecoration: 'none',
+}
+
+const closeSidebarBtnStyle = {
+  backgroundColor: 'transparent',
+  border: 'none',
+  color: '#9ca3af',
+  fontSize: '20px',
+  cursor: 'pointer',
+  padding: '4px',
 }
 
 const navStyle = {
@@ -128,11 +209,11 @@ const logoutContainerStyle = {
 }
 
 const mainAreaStyle = {
-  marginLeft: '260px',
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
+  transition: 'margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
 }
 
 const headerStyle = {
@@ -142,11 +223,22 @@ const headerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '0 32px',
+}
+
+const hamburgerBtnStyle = {
+  backgroundColor: 'transparent',
+  border: 'none',
+  fontSize: '24px',
+  color: '#374151',
+  cursor: 'pointer',
+  padding: '6px',
+  borderRadius: '6px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }
 
 const headerTitleStyle = {
-  fontSize: '18px',
   fontWeight: 600,
   color: '#111827',
 }
@@ -176,6 +268,16 @@ const emailStyle = {
 }
 
 const contentStyle = {
-  padding: '32px',
   flex: 1,
+}
+
+const backdropStyle = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  zIndex: 999,
+  backdropFilter: 'blur(3px)',
 }

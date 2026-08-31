@@ -177,8 +177,8 @@ const sectionTitleStyle = {
 
 const gridStyle = {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gap: '16px 28px',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+  gap: '16px 24px',
 }
 
 const fieldStyle = {
