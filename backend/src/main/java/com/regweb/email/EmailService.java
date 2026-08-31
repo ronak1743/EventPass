@@ -146,7 +146,7 @@ public class EmailService {
         log.info("Successfully sent registration confirmation email via SMTP to {}", toEmail);
     }
 
-    private void sendViaResend(String key, String toEmail, String subject, String htmlBody) {
+    private void sendViaResend(String key, String toEmail, String subject, String htmlBody) throws Exception {
         Resend resend = new Resend(key);
         String from = fromName + " <" + fromEmail + ">";
 
